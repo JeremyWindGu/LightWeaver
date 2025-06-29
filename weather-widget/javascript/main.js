@@ -14,6 +14,7 @@ function getWeatherData() {
 let input = document.querySelector(".zipcode");
 let btn = document.querySelector(".search-button");
 let form = document.querySelector("form");
+let image = document.querySelector("img");
 
 let CITY_NAME = document.querySelector(".city_name");
 let CITY_TEMP = document.querySelector(".temperature");
