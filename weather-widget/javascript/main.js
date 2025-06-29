@@ -13,11 +13,14 @@ function getWeatherData() {
 
 let input = document.querySelector(".zipcode");
 let btn = document.querySelector(".search-button");
+let form = document.querySelector("form");
 
+let CITY_NAME = document.querySelector(".city_name");
+let CITY_TEMP = document.querySelector(".temperature");
 
-getWeatherData = (zip) => {
-  let API_KEY = config.WEATHER_API_KEY;
-  let API_ENDPOINT = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&APPID=${API_KEY}`;
+const getWeatherData = (zip) => {
+  const API_KEY = "[YOUR API KEY HERE]";
+  const API_ENDPOINT = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&APPID=${API_KEY}`;
 
   fetch(API_ENDPOINT)
     .then((response) => response.json())
@@ -25,7 +28,18 @@ getWeatherData = (zip) => {
       let local_weather_data = data;
         console.log(local_weather_data)
     })
-  }
+
+  fetch(API_ENDPOINT)
+    .then(response => response.json())
+    .then(data => {
+      let WEATHER_ICON = local_weather_data.weather[0].icon
+      
+      image.setAttribute('src', `https://openweathermap.org/img/wn/${WEATHER_ICON}@2x.png`)
+  })
+
+  form.reset();
+  input.focus();
+}
 
 const getZipCode = (e) => {
   e.preventDefault();
